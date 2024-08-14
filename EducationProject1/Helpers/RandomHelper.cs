@@ -24,13 +24,11 @@ public static class RandomHelper
 
     private static int GetRandomNumberExceptZero(int minValue, int maxValue)
     {
-        int number;
-        do
-        {
-            number = RandomObj.Next(minValue, maxValue + 1);
-        } while (number == 0);
+        if (minValue > maxValue || (minValue <= 0 && maxValue >= 0 && maxValue - minValue == 0))
+            throw new ArgumentException("Invalid range. No non-zero values possible in the given range.");
 
-        return number;
+        int number = RandomObj.Next(minValue, maxValue + 1);
+        return number == 0 ? GetRandomNumberExceptZero(minValue, maxValue) : number;
     }
 
     public static int GetNaturalRandomNumberInDiapason(ushort minValue, uint maxValue)
