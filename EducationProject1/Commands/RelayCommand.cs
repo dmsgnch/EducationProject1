@@ -4,7 +4,7 @@ using System.Windows.Input;
 namespace EducationProject1.Commands;
 
 /// <summary>
-/// Universal command with asynchronous execution
+/// Universal command with synchronous execution
 /// </summary>
 public class RelayCommand : ICommand
 {

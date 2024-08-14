@@ -6,7 +6,7 @@ using EducationProject1.Models.SecondaryModels;
 
 namespace EducationProject1.Models.Abstract;
 
-public abstract class FigureBase
+public abstract class FigureBase : IMovable
 {
     public string FigureName { get; set; }
     public MoveVector MoveVector { get; set; }

@@ -30,17 +30,17 @@
                     x:Name="TriangleButton"
                     Click="OnTriangleButton_Click">
             </Button>
+            
             <Button DockPanel.Dock="Left" 
                     Style="{StaticResource TopPanelRectangleButtonStyle}" 
                     x:Name="RectangleButton"
                     Click="OnRectangleButton_Click">
-
             </Button>
+            
             <Button DockPanel.Dock="Left" 
                     Style="{StaticResource TopPanelCircleButtonStyle}" 
                     x:Name="CircleButton"
                     Click="OnCircleButton_Click">
-
             </Button>
         </DockPanel>
         
