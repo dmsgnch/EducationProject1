@@ -1,11 +1,33 @@
 {
   "version": 3,
   "targets": {
-    "net8.0-windows7.0": {}
+    "net8.0-windows7.0": {
+      "EducationProject1.Localization/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/EducationProject1.Localization.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/EducationProject1.Localization.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "EducationProject1.Localization/1.0.0": {
+      "type": "project",
+      "path": "../EducationProject1.Localization/EducationProject1.Localization.csproj",
+      "msbuildProject": "../EducationProject1.Localization/EducationProject1.Localization.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0-windows7.0": []
+    "net8.0-windows7.0": [
+      "EducationProject1.Localization >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Dimchik\\.nuget\\packages\\": {},
@@ -39,7 +61,11 @@
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EducationProject1\\EducationProject1.Localization\\EducationProject1.Localization.csproj": {
+              "projectPath": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EducationProject1\\EducationProject1.Localization\\EducationProject1.Localization.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

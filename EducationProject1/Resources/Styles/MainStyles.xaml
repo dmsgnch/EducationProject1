@@ -43,7 +43,7 @@
                                 Margin="{TemplateBinding Margin}"
                                 Padding="{TemplateBinding Padding}">
                             <Grid>
-                                <Polygon Fill="Red" Points="20,0 40,20 0,20" HorizontalAlignment="Center" />
+                                <Polygon Fill="Red" Points="15,0 30,15 0,15" HorizontalAlignment="Center" />
                                 <ContentPresenter x:Name="ContentSite"
                                                   ContentSource="Content"
                                                   RecognizesAccessKey="True"/>
@@ -73,7 +73,7 @@
                                 Margin="{TemplateBinding Margin}"
                                 Padding="{TemplateBinding Padding}">
                             <Grid>
-                                <Ellipse Width="20" Height="20" Fill="Blue" HorizontalAlignment="Center"/>
+                                <Ellipse Width="15" Height="15" Fill="Blue" HorizontalAlignment="Center"/>
                                 <ContentPresenter x:Name="ContentSite"
                                                   ContentSource="Content"
                                                   RecognizesAccessKey="True"/>
@@ -103,7 +103,7 @@
                                 Margin="{TemplateBinding Margin}"
                                 Padding="{TemplateBinding Padding}">
                             <Grid>
-                                <Polygon Fill="Green" Points="0,0 40,0 40,20 0,20" HorizontalAlignment="Center"/>
+                                <Polygon Fill="Green" Points="0,0 30,0 30,15 0,15" HorizontalAlignment="Center"/>
                                 <ContentPresenter x:Name="ContentSite"
                                                   ContentSource="Content"
                                                   RecognizesAccessKey="True"/>

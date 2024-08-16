@@ -13,50 +13,63 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="68"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="100" MaxWidth="300" Width="Auto"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        
+
         <DockPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" LastChildFill="False" Background="{StaticResource HeaderBrush}">
-            <Button DockPanel.Dock="Left" 
-                    Style="{StaticResource TopPanelTriangleButtonStyle}" 
-                    x:Name="TriangleButton"
-                    Click="OnTriangleButton_Click">
-            </Button>
-            
-            <Button DockPanel.Dock="Left" 
-                    Style="{StaticResource TopPanelRectangleButtonStyle}" 
-                    x:Name="RectangleButton"
-                    Click="OnRectangleButton_Click">
-            </Button>
-            
-            <Button DockPanel.Dock="Left" 
-                    Style="{StaticResource TopPanelCircleButtonStyle}" 
-                    x:Name="CircleButton"
-                    Click="OnCircleButton_Click">
-            </Button>
+            <GroupBox Margin="5 0 5 5" Foreground="White" Header="{Binding ButtonsGroupHeader, Mode=OneWay}" Padding="5">
+                <DockPanel LastChildFill="False">
+                    <Button DockPanel.Dock="Left"
+                            Style="{StaticResource TopPanelTriangleButtonStyle}"
+                            x:Name="TriangleButton"
+                            Click="OnTriangleButton_Click">
+                    </Button>
+
+                    <Button DockPanel.Dock="Left"
+                            Style="{StaticResource TopPanelRectangleButtonStyle}"
+                            x:Name="RectangleButton"
+                            Click="OnRectangleButton_Click">
+                    </Button>
+
+                    <Button DockPanel.Dock="Left"
+                            Style="{StaticResource TopPanelCircleButtonStyle}"
+                            x:Name="CircleButton"
+                            Click="OnCircleButton_Click">
+                    </Button>
+                </DockPanel>
+            </GroupBox>
+            <ComboBox 
+                x:Name="LanguageComboBox" 
+                DockPanel.Dock="Right" 
+                Margin="10 5 10 5"
+                Width="200"
+                MaxHeight="25"
+                SelectedItem="{Binding SelectedLanguage}"
+                SelectionChanged="OnComboBox_SelectionChanged">
+            </ComboBox>
         </DockPanel>
-        
+
         <DockPanel Grid.Column="0" Grid.Row="1" Background="{StaticResource SecondaryBrush}">
-            <ListBox ItemsSource="{Binding Figures}" Background="Transparent">
+            <ListBox ItemsSource="{Binding Figures, Mode=OneWay}" Background="Transparent">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding FigureName}" Foreground="White"/>
+                        <TextBlock Text="{Binding FigureName, Mode=OneWay}" Foreground="White" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </DockPanel>
-        
+
         <DockPanel Grid.Column="1" Grid.Row="1" Background="{StaticResource MainCanvasBrush}">
             <Canvas x:Name="MyCanvas">
-                
+
             </Canvas>
         </DockPanel>
     </Grid>

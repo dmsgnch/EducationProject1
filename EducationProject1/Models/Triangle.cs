@@ -12,6 +12,7 @@ public class Triangle : FigureBase
     public Triangle()
     {
         FillBrush = Brushes.Red;
+        FigureName = GetNameFromResources();
     }
 
     public override void Draw(Canvas canvas)
@@ -35,5 +36,15 @@ public class Triangle : FigureBase
                 1, Convert.ToUInt32(canvas.ActualHeight - Size.Height)));
 
         canvas.Children.Add(Figure);
+    }
+    
+    private string GetNameFromResources()
+    {
+        return Localization.Resources.Resources.TriangleName;
+    }
+
+    public override void SetResourceName()
+    {
+        FigureName = GetNameFromResources();
     }
 }

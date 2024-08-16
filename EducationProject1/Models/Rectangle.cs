@@ -11,6 +11,7 @@ public class Rectangle : FigureBase
     public Rectangle()
     {
         FillBrush = Brushes.Green;
+        FigureName = GetNameFromResources();
     }
 
     public override void Draw(Canvas canvas)
@@ -30,5 +31,15 @@ public class Rectangle : FigureBase
                 1, Convert.ToUInt32(canvas.ActualHeight - Size.Height)));
 
         canvas.Children.Add(Figure);
+    }
+    
+    private string GetNameFromResources()
+    {
+        return Localization.Resources.Resources.RectangleName;
+    }
+
+    public override void SetResourceName()
+    {
+        FigureName = GetNameFromResources();
     }
 }
