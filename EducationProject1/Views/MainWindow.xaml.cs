@@ -1,7 +1,9 @@
-﻿using System.Windows;
+﻿using System.Globalization;
+using System.Windows;
 using System.Windows.Threading;
 using EducationProject1.Models;
 using EducationProject1.Models.Abstract;
+using EducationProject1.Models.SecondaryModels;
 using EducationProject1.ViewModels;
 using Rectangle = EducationProject1.Models.Rectangle;
 
@@ -12,20 +14,29 @@ namespace EducationProject1.Views;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private DispatcherTimer _timer;
+    private readonly MainWindowViewModel _mainWindowViewModel;
+    private readonly DispatcherTimer _timer;
     
     public MainWindow()
     {
         InitializeComponent();
-
-        DataContext = new MainWindowViewModel();
+        _timer = new DispatcherTimer();
+        
+        _mainWindowViewModel = new MainWindowViewModel();
+        DataContext = _mainWindowViewModel;
 
         InitializeAndStartTimer();
+        SetLanguages();
+    }
+
+    private void SetLanguages()
+    {
+        LanguageComboBox.ItemsSource = _mainWindowViewModel.Languages;
+        _mainWindowViewModel.SelectedLanguage = _mainWindowViewModel.Languages[0];
     }
 
     private void InitializeAndStartTimer()
     {
-        _timer = new DispatcherTimer();
         _timer.Interval = TimeSpan.FromMilliseconds(16); // Near 60 FPS
         _timer.Tick += OnTimerTick;
         _timer.Start();
@@ -33,7 +44,7 @@ public partial class MainWindow : Window
     
     private void OnTimerTick(object? sender, EventArgs e)
     {
-        var figures = ((MainWindowViewModel)DataContext).Figures;
+        var figures = _mainWindowViewModel.Figures;
         
         foreach (var figure in figures)
         {
@@ -61,5 +72,17 @@ public partial class MainWindow : Window
         figure.Draw(MyCanvas);
         
         ((MainWindowViewModel)DataContext).Figures.Add(figure);
+    }
+
+    private void OnComboBox_SelectionChanged(object sender, RoutedEventArgs e)
+    {
+        if(LanguageComboBox.SelectedItem is Language language) 
+        {
+            CultureInfo culture = new CultureInfo(language.Code);
+            CultureInfo.CurrentUICulture = culture;
+            CultureInfo.CurrentCulture = culture;
+
+            _mainWindowViewModel.RefreshResources();
+        }
     }
 }

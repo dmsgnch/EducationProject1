@@ -16,4 +16,12 @@
       </Page>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Components\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\EducationProject1.Localization\EducationProject1.Localization.csproj" />
+    </ItemGroup>
+
 </Project>

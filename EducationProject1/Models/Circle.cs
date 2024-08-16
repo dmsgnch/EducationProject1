@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -11,8 +12,8 @@ public class Circle : FigureBase
     public Circle()
     {
         FillBrush = Brushes.Blue;
-
         Size.Height = Size.Width;
+        FigureName = GetNameFromResources();
     }
 
     public override void Draw(Canvas canvas)
@@ -32,5 +33,15 @@ public class Circle : FigureBase
                 1, Convert.ToUInt32(canvas.ActualHeight - Size.Height)));
 
         canvas.Children.Add(Figure);
+    }
+
+    private string GetNameFromResources()
+    {
+        return Localization.Resources.Resources.CircleName;
+    }
+
+    public override void SetResourceName()
+    {
+        FigureName = GetNameFromResources();
     }
 }

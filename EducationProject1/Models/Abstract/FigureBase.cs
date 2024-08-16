@@ -1,3 +1,5 @@
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -6,18 +8,25 @@ using EducationProject1.Models.SecondaryModels;
 
 namespace EducationProject1.Models.Abstract;
 
-public abstract class FigureBase : IMovable
+public abstract class FigureBase : IMovable, INotifyPropertyChanged
 {
-    public string FigureName { get; set; }
+    private string _figureName;
+    public string FigureName
+    {
+        get => _figureName;
+        set
+        {
+            _figureName = value;
+            OnPropertyChanged();
+        } 
+    }
     public MoveVector MoveVector { get; set; }
     protected ObjectSize Size { get; set; }
-    protected SolidColorBrush? FillBrush { get; set; }
+    protected SolidColorBrush? FillBrush { get; init; }
     protected FrameworkElement? Figure { get; set; }
 
     public FigureBase()
     {
-        FigureName = GetType().Name;
-
         Size = new ObjectSize(RandomHelper.GetSizeVectorRandomNumbers());
         MoveVector = new MoveVector(RandomHelper.GetMoveVectorRandomNumbers());
     }
@@ -39,4 +48,12 @@ public abstract class FigureBase : IMovable
     }
 
     public abstract void Draw(Canvas canvas);
+    public abstract void SetResourceName();
+    
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 }
