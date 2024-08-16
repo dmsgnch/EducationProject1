@@ -58,7 +58,7 @@
         </DockPanel>
 
         <DockPanel Grid.Column="0" Grid.Row="1" Background="{StaticResource SecondaryBrush}">
-            <ListBox ItemsSource="{Binding Figures, Mode=OneWay}" Background="Transparent">
+            <ListBox ItemsSource="{Binding Figures, Mode=OneWay}" SelectedItem="{Binding SelectedFigure, Mode=OneWayToSource}" Background="Transparent">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding FigureName, Mode=OneWay}" Foreground="White" />

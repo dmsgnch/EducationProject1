@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Shapes;
 using EducationProject1.Helpers;
 using EducationProject1.Models.SecondaryModels;
 
@@ -23,7 +24,7 @@ public abstract class FigureBase : IMovable, INotifyPropertyChanged
     public MoveVector MoveVector { get; set; }
     protected ObjectSize Size { get; set; }
     protected SolidColorBrush? FillBrush { get; init; }
-    protected FrameworkElement? Figure { get; set; }
+    public Shape? Figure { get; set; }
 
     public FigureBase()
     {

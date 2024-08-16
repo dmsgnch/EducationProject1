@@ -20,7 +20,9 @@ public class Rectangle : FigureBase
         {
             Width = Size.Width,
             Height = Size.Height,
-            Fill = FillBrush
+            Fill = FillBrush,
+            Stroke = Brushes.Black,
+            StrokeThickness = 0
         };
         
         Canvas.SetLeft(Figure, 

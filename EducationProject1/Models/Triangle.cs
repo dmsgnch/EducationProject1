@@ -26,6 +26,8 @@ public class Triangle : FigureBase
                 new Point(Size.Width, Size.Height)
             },
             Fill = FillBrush,
+            Stroke = Brushes.Black,
+            StrokeThickness = 0
         };
 
         Canvas.SetLeft(Figure, 
