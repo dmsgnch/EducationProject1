@@ -46,6 +46,7 @@
                     </Button>
                 </DockPanel>
             </GroupBox>
+
             <ComboBox 
                 x:Name="LanguageComboBox" 
                 DockPanel.Dock="Right" 
@@ -55,6 +56,17 @@
                 SelectedItem="{Binding SelectedLanguage}"
                 SelectionChanged="OnComboBox_SelectionChanged">
             </ComboBox>
+            
+            <Button DockPanel.Dock="Right"
+                    Content="{Binding StopFigureButtonText, Mode=OneWay}"
+                    VerticalAlignment="Center"
+                    MinHeight="25"
+                    MinWidth="100"
+                    Margin="10 5 10 5"
+                    x:Name="StopFigureButton"
+                    Command="{Binding ToggleFigureMovementCommand}">
+            </Button>
+            
         </DockPanel>
 
         <DockPanel Grid.Column="0" Grid.Row="1" Background="{StaticResource SecondaryBrush}">

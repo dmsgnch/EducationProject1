@@ -9,7 +9,7 @@ using EducationProject1.Models.SecondaryModels;
 
 namespace EducationProject1.Models.Abstract;
 
-public abstract class FigureBase : IMovable, INotifyPropertyChanged
+public abstract class MovingFigureBase : IMovable, INotifyPropertyChanged
 {
     private string _figureName;
     public string FigureName
@@ -21,28 +21,28 @@ public abstract class FigureBase : IMovable, INotifyPropertyChanged
             OnPropertyChanged();
         } 
     }
-    public MoveVector MoveVector { get; set; }
-    protected ObjectSize Size { get; set; }
+    public SpeedVector SpeedVector { get; set; }
+    public ObjectSize Size { get; set; }
     protected SolidColorBrush? FillBrush { get; init; }
     public Shape? Figure { get; set; }
 
-    public FigureBase()
+    public MovingFigureBase()
     {
         Size = new ObjectSize(RandomHelper.GetSizeVectorRandomNumbers());
-        MoveVector = new MoveVector(RandomHelper.GetMoveVectorRandomNumbers());
+        SpeedVector = new SpeedVector(RandomHelper.GetMoveVectorRandomNumbers());
     }
     
     public virtual void Move(Canvas myCanvas)
     {
         if (Figure is null) return;
         
-        double newX = Canvas.GetLeft(Figure) + MoveVector.dX;
-        double newY = Canvas.GetTop(Figure) + MoveVector.dY;
+        double newX = Canvas.GetLeft(Figure) + SpeedVector.dX;
+        double newY = Canvas.GetTop(Figure) + SpeedVector.dY;
         
         if (newX <= 0 || newX >= myCanvas.ActualWidth - Size.Width)
-            MoveVector.dX = -MoveVector.dX;
+            SpeedVector.dX = -SpeedVector.dX;
         if (newY <= 0 || newY >= myCanvas.ActualHeight - Size.Height)
-            MoveVector.dY = -MoveVector.dY;
+            SpeedVector.dY = -SpeedVector.dY;
         
         Canvas.SetLeft(Figure, newX);
         Canvas.SetTop(Figure, newY);

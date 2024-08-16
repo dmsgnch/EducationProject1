@@ -123,8 +123,14 @@
   <data name="CircleName" xml:space="preserve">
     <value>Коло</value>
   </data>
+  <data name="MoveFigureButtonText" xml:space="preserve">
+    <value>Рухатися</value>
+  </data>
   <data name="RectangleName" xml:space="preserve">
     <value>Прямокутник</value>
+  </data>
+  <data name="StopFigureButtonText" xml:space="preserve">
+    <value>Стоп</value>
   </data>
   <data name="TriangleName" xml:space="preserve">
     <value>Трикутник</value>

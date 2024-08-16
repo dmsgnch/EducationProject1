@@ -4,5 +4,5 @@ namespace EducationProject1.Models.Abstract;
 
 public interface IMovable
 {
-    public MoveVector MoveVector { get; set; }
+    public SpeedVector SpeedVector { get; set; }
 }

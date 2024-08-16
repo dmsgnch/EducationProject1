@@ -7,7 +7,7 @@ using EducationProject1.Models.Abstract;
 
 namespace EducationProject1.Models;
 
-public class Triangle : FigureBase
+public class Triangle : MovingFigureBase
 {
     public Triangle()
     {

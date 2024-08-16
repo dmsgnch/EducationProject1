@@ -118,15 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CircleName" xml:space="preserve">
-    <value />
+    <value>Circle</value>
   </data>
   <data name="TriangleName" xml:space="preserve">
-    <value />
+    <value>Triangle</value>
   </data>
   <data name="RectangleName" xml:space="preserve">
-    <value />
+    <value>Rectangle</value>
   </data>
   <data name="ButtonsGroupHeader" xml:space="preserve">
-    <value />
+    <value>Spawn figure</value>
+  </data>
+  <data name="MoveFigureButtonText" xml:space="preserve">
+    <value>Move</value>
+  </data>
+  <data name="StopFigureButtonText" xml:space="preserve">
+    <value>Stop</value>
   </data>
 </root>

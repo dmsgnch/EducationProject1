@@ -67,11 +67,11 @@ public partial class MainWindow : Window
         CreateNewFigure(new Circle());
     }
 
-    private void CreateNewFigure(FigureBase figure)
+    private void CreateNewFigure(MovingFigureBase movingFigure)
     {
-        figure.Draw(MyCanvas);
+        movingFigure.Draw(MyCanvas);
         
-        ((MainWindowViewModel)DataContext).Figures.Add(figure);
+        ((MainWindowViewModel)DataContext).Figures.Add(movingFigure);
     }
 
     private void OnComboBox_SelectionChanged(object sender, RoutedEventArgs e)
@@ -84,5 +84,12 @@ public partial class MainWindow : Window
 
             _mainWindowViewModel.RefreshResources();
         }
+    }
+    
+    private void OnStopFigureButton_Click(object sender, RoutedEventArgs e)
+    {
+        _mainWindowViewModel.ToggleFigureMovement();
+
+        _mainWindowViewModel.RaiseStopFigureButtonTextChanged();
     }
 }

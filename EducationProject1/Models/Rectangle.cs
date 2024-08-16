@@ -6,7 +6,7 @@ using EducationProject1.Models.Abstract;
 
 namespace EducationProject1.Models;
 
-public class Rectangle : FigureBase
+public class Rectangle : MovingFigureBase
 {
     public Rectangle()
     {

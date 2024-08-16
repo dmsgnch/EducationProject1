@@ -7,7 +7,7 @@ using EducationProject1.Models.Abstract;
 
 namespace EducationProject1.Models;
 
-public class Circle : FigureBase
+public class Circle : MovingFigureBase
 {
     public Circle()
     {

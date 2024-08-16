@@ -123,8 +123,14 @@
   <data name="CircleName" xml:space="preserve">
     <value>Circle</value>
   </data>
+  <data name="MoveFigureButtonText" xml:space="preserve">
+    <value>Move</value>
+  </data>
   <data name="RectangleName" xml:space="preserve">
     <value>Rectangle</value>
+  </data>
+  <data name="StopFigureButtonText" xml:space="preserve">
+    <value>Stop</value>
   </data>
   <data name="TriangleName" xml:space="preserve">
     <value>Triangle</value>
