@@ -1,10 +1,15 @@
+using MessagePack;
+
 namespace EducationProject1.Models.SecondaryModels;
 
+[MessagePackObject]
 public class SpeedVector
 {
+    [Key(0)]
     public bool IsStopped { get; set; } = false;
 
     private double _dX;
+    [Key(1)]
     public double dX
     {
         get => _dX * Convert.ToDouble(!IsStopped);
@@ -12,11 +17,15 @@ public class SpeedVector
     }
     
     private double _dY;
+    [Key(2)]
     public double dY
     {
         get => _dY * Convert.ToDouble(!IsStopped);
         set => _dY = value;
     }
+
+    public SpeedVector()
+    { }
 
     public SpeedVector(double dX, double dY)
     {
@@ -28,6 +37,4 @@ public class SpeedVector
     {
         (dX, dY) = vector;
     }
-    
-    
 }

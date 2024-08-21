@@ -135,4 +135,40 @@
   <data name="TriangleName" xml:space="preserve">
     <value>Трикутник</value>
   </data>
+  <data name="SelectPlaceForSavingFile" xml:space="preserve">
+    <value>Оберіть місце для зберігання файлу</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Оберіть файл збереження</value>
+  </data>
+  <data name="SaveMenuItem" xml:space="preserve">
+    <value>Зберегти</value>
+  </data>
+  <data name="OpenMenuItem" xml:space="preserve">
+    <value>Відкрити</value>
+  </data>
+  <data name="FileMenuItem" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="StopAllFigureButtonText" xml:space="preserve">
+    <value>Зупинити усі</value>
+  </data>
+  <data name="StartAllFigureButtonText" xml:space="preserve">
+    <value>Рухати всі</value>
+  </data>
+  <data name="CaptionError" xml:space="preserve">
+    <value>Помилка</value>
+  </data>
+  <data name="CaptionWarning" xml:space="preserve">
+    <value>Попередження</value>
+  </data>
+  <data name="MessageAddAtLeastOneFigure" xml:space="preserve">
+    <value>Щоб зберегти фігури в файл необхідно спочатку додати хоча б одну</value>
+  </data>
+  <data name="MessageIncorrectFileSignature" xml:space="preserve">
+    <value>Некоректний формат файлу</value>
+  </data>
+  <data name="MessageIncorrectSaveFileVersion" xml:space="preserve">
+    <value>Некоректна версія файлу збереження</value>
+  </data>
 </root>

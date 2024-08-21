@@ -1,4 +1,4 @@
-namespace EducationProject1.Helpers;
+namespace EducationProject1.Components.Helpers;
 
 public static class RandomHelper
 {

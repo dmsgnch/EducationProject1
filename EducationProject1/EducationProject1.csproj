@@ -17,11 +17,18 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Components\" />
+      <Folder Include="LocalAppData\" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\EducationProject1.Localization\EducationProject1.Localization.csproj" />
+      <ProjectReference Include="..\EducationProject1.RandomToolkit\EducationProject1.RandomToolkit.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MessagePack" Version="2.5.172" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
 
 </Project>

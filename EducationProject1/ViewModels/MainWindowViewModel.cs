@@ -1,16 +1,17 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
 using System.Windows.Shapes;
 using EducationProject1.Commands;
-using EducationProject1.Models.Abstract;
+using EducationProject1.Models.FigureModels.Abstract;
 using EducationProject1.Models.SecondaryModels;
 
 namespace EducationProject1.ViewModels;
 
 public class MainWindowViewModel : INotifyPropertyChanged
 {
+    public RelayCommand ToggleFigureMovementCommand { get; }
+    
     public ObservableCollection<MovingFigureBase> Figures { get; set; } = new();
     
     internal Language[] Languages { get; private set; } = new[]
@@ -18,8 +19,20 @@ public class MainWindowViewModel : INotifyPropertyChanged
         new Language("English", "en-US"),
         new Language("Українська", "uk-UA"),
     };
+
+    private bool _isAllStopped = false;
+    public bool IsAllStopped
+    {
+        get => _isAllStopped;
+        set
+        {
+            _isAllStopped = value;
+            OnPropertyChanged();
+            ToggleFigureMovementCommand.RaiseCanExecuteChanged();
+        }
+    }
     
-    public RelayCommand ToggleFigureMovementCommand { get; }
+    #region ListItem bindings
     
     private Language _selectedLanguage;
     public Language SelectedLanguage
@@ -49,8 +62,12 @@ public class MainWindowViewModel : INotifyPropertyChanged
         }
     }
     
+    #endregion
+    
     public string ButtonsGroupHeader => Localization.Resources.Resources.ButtonsGroupHeader;
     private void RaiseButtonsGroupHeaderChanged() => OnPropertyChanged(nameof(ButtonsGroupHeader));
+    
+    #region Buttons binding
     
     public string StopFigureButtonText
     {
@@ -70,28 +87,79 @@ public class MainWindowViewModel : INotifyPropertyChanged
             }
         }
     }
-    public void RaiseStopFigureButtonTextChanged() => OnPropertyChanged(nameof(StopFigureButtonText));
+    public string StopAllFigureButtonText  {
+        get
+        {
+            if (!IsAllStopped)
+            {
+                return Localization.Resources.Resources.StopAllFigureButtonText;
+            }
+            else if (IsAllStopped)
+            {
+                return Localization.Resources.Resources.StartAllFigureButtonText;
+            }
+            else
+            {
+                throw new InvalidOperationException("Unacceptable behavior");
+            }
+        }
+    }
+
+    public void RaiseStopFigureButtonChanged()
+    {
+        OnPropertyChanged(nameof(StopFigureButtonText));
+    }
+    
+    public void RaiseStopAllFiguresButtonChanged()
+    {
+        OnPropertyChanged(nameof(StopAllFigureButtonText));
+
+        RaiseStopFigureButtonChanged();
+    }
+    
+    #endregion
+    
+    #region MenuItems binding
+    
+    public string FileMenuItem => Localization.Resources.Resources.FileMenuItem;
+    public string SaveMenuItem => Localization.Resources.Resources.SaveMenuItem;
+    public string OpenMenuItem => Localization.Resources.Resources.OpenMenuItem;
+
+    private void RaiseMenuItemsChanged()
+    {
+        OnPropertyChanged(nameof(FileMenuItem));
+        OnPropertyChanged(nameof(SaveMenuItem));
+        OnPropertyChanged(nameof(OpenMenuItem));
+    }
+    
+    #endregion
 
     public MainWindowViewModel()
     {
         ToggleFigureMovementCommand = new RelayCommand((param) => ToggleFigureMovement(), CanToggleFigureMovementExecute);
     }
+    
+    #region Commands actions
 
     public void ToggleFigureMovement()
     {
         SelectedFigure.SpeedVector.IsStopped = !SelectedFigure.SpeedVector.IsStopped;
 
-        RaiseStopFigureButtonTextChanged();
+        RaiseStopFigureButtonChanged();
     }
 
-    private bool CanToggleFigureMovementExecute() => SelectedFigure is not null;
+    private bool CanToggleFigureMovementExecute() => SelectedFigure is not null && !IsAllStopped;
+    
+    #endregion
     
     #region Resources refreshing
 
     public void RefreshResources()
     {
         RaiseButtonsGroupHeaderChanged();
-        RaiseStopFigureButtonTextChanged();
+        RaiseStopFigureButtonChanged();
+        RaiseStopAllFiguresButtonChanged();
+        RaiseMenuItemsChanged();
 
         UpdateFiguresName();
     }

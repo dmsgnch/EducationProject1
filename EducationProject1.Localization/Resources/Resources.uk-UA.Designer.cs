@@ -21,7 +21,7 @@ namespace EducationProject1.Localization.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources_uk_UA {
+    public class Resources_uk_UA {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -35,7 +35,7 @@ namespace EducationProject1.Localization.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EducationProject1.Localization.Resources.Resources.uk-UA", typeof(Resources_uk_UA).Assembly);
@@ -50,7 +50,7 @@ namespace EducationProject1.Localization.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -60,27 +60,162 @@ namespace EducationProject1.Localization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Створити фігуру.
+        /// </summary>
+        public static string ButtonsGroupHeader {
+            get {
+                return ResourceManager.GetString("ButtonsGroupHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Помилка.
+        /// </summary>
+        public static string CaptionError {
+            get {
+                return ResourceManager.GetString("CaptionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Попередження.
+        /// </summary>
+        public static string CaptionWarning {
+            get {
+                return ResourceManager.GetString("CaptionWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Коло.
         /// </summary>
-        internal static string CircleName {
+        public static string CircleName {
             get {
                 return ResourceManager.GetString("CircleName", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Файл.
+        /// </summary>
+        public static string FileMenuItem {
+            get {
+                return ResourceManager.GetString("FileMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Щоб зберегти фігури в файл необхідно спочатку додати хоча б одну.
+        /// </summary>
+        public static string MessageAddAtLeastOneFigure {
+            get {
+                return ResourceManager.GetString("MessageAddAtLeastOneFigure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Некоректний формат файлу.
+        /// </summary>
+        public static string MessageIncorrectFileSignature {
+            get {
+                return ResourceManager.GetString("MessageIncorrectFileSignature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Некоректна версія файлу збереження.
+        /// </summary>
+        public static string MessageIncorrectSaveFileVersion {
+            get {
+                return ResourceManager.GetString("MessageIncorrectSaveFileVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Рухатися.
+        /// </summary>
+        public static string MoveFigureButtonText {
+            get {
+                return ResourceManager.GetString("MoveFigureButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Відкрити.
+        /// </summary>
+        public static string OpenMenuItem {
+            get {
+                return ResourceManager.GetString("OpenMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Прямокутник.
         /// </summary>
-        internal static string RectangleName {
+        public static string RectangleName {
             get {
                 return ResourceManager.GetString("RectangleName", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Зберегти.
+        /// </summary>
+        public static string SaveMenuItem {
+            get {
+                return ResourceManager.GetString("SaveMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Оберіть файл збереження.
+        /// </summary>
+        public static string SelectFile {
+            get {
+                return ResourceManager.GetString("SelectFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Оберіть місце для зберігання файлу.
+        /// </summary>
+        public static string SelectPlaceForSavingFile {
+            get {
+                return ResourceManager.GetString("SelectPlaceForSavingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Рухати всі.
+        /// </summary>
+        public static string StartAllFigureButtonText {
+            get {
+                return ResourceManager.GetString("StartAllFigureButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Зупинити усі.
+        /// </summary>
+        public static string StopAllFigureButtonText {
+            get {
+                return ResourceManager.GetString("StopAllFigureButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Стоп.
+        /// </summary>
+        public static string StopFigureButtonText {
+            get {
+                return ResourceManager.GetString("StopFigureButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Трикутник.
         /// </summary>
-        internal static string TriangleName {
+        public static string TriangleName {
             get {
                 return ResourceManager.GetString("TriangleName", resourceCulture);
             }

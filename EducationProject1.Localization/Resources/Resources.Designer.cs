@@ -69,11 +69,65 @@ namespace EducationProject1.Localization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string CaptionError {
+            get {
+                return ResourceManager.GetString("CaptionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        public static string CaptionWarning {
+            get {
+                return ResourceManager.GetString("CaptionWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Circle.
         /// </summary>
         public static string CircleName {
             get {
                 return ResourceManager.GetString("CircleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        public static string FileMenuItem {
+            get {
+                return ResourceManager.GetString("FileMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To save the shapes in a file you must first add at least one of them.
+        /// </summary>
+        public static string MessageAddAtLeastOneFigure {
+            get {
+                return ResourceManager.GetString("MessageAddAtLeastOneFigure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect file signature.
+        /// </summary>
+        public static string MessageIncorrectFileSignature {
+            get {
+                return ResourceManager.GetString("MessageIncorrectFileSignature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect save file version.
+        /// </summary>
+        public static string MessageIncorrectSaveFileVersion {
+            get {
+                return ResourceManager.GetString("MessageIncorrectSaveFileVersion", resourceCulture);
             }
         }
         
@@ -87,11 +141,65 @@ namespace EducationProject1.Localization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        public static string OpenMenuItem {
+            get {
+                return ResourceManager.GetString("OpenMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rectangle.
         /// </summary>
         public static string RectangleName {
             get {
                 return ResourceManager.GetString("RectangleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string SaveMenuItem {
+            get {
+                return ResourceManager.GetString("SaveMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a save file.
+        /// </summary>
+        public static string SelectFile {
+            get {
+                return ResourceManager.GetString("SelectFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a location to save the file.
+        /// </summary>
+        public static string SelectPlaceForSavingFile {
+            get {
+                return ResourceManager.GetString("SelectPlaceForSavingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start all.
+        /// </summary>
+        public static string StartAllFigureButtonText {
+            get {
+                return ResourceManager.GetString("StartAllFigureButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop all.
+        /// </summary>
+        public static string StopAllFigureButtonText {
+            get {
+                return ResourceManager.GetString("StopAllFigureButtonText", resourceCulture);
             }
         }
         

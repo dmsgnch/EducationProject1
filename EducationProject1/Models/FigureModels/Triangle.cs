@@ -2,20 +2,30 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using EducationProject1.Helpers;
-using EducationProject1.Models.Abstract;
+using EducationProject1.Models.FigureModels.Abstract;
+using EducationProject1.Models.SecondaryModels;
 
-namespace EducationProject1.Models;
+namespace EducationProject1.Models.FigureModels;
 
 public class Triangle : MovingFigureBase
 {
     public Triangle()
     {
+        InitValues();
+    }
+
+    public Triangle(SpeedVector? speedVector = null, FigureSize? figureSize = null) : base(speedVector, figureSize)
+    {
+        InitValues();
+    }
+
+    private void InitValues()
+    {
         FillBrush = Brushes.Red;
         FigureName = GetNameFromResources();
     }
 
-    public override void Draw(Canvas canvas)
+    public override void Draw(Panel panel)
     {
         Figure = new Polygon
         {
@@ -30,14 +40,12 @@ public class Triangle : MovingFigureBase
             StrokeThickness = 0
         };
 
-        Canvas.SetLeft(Figure, 
-            RandomHelper.GetNaturalRandomNumberInDiapason(
-                1, Convert.ToUInt32(canvas.ActualWidth - Size.Width)));
-        Canvas.SetTop(Figure, 
-            RandomHelper.GetNaturalRandomNumberInDiapason(
-                1, Convert.ToUInt32(canvas.ActualHeight - Size.Height)));
-
-        canvas.Children.Add(Figure);
+        Position ??= GetRandomPanelPosition(panel);
+        
+        Canvas.SetLeft(Figure, Position.X);
+        Canvas.SetTop(Figure, Position.Y);
+        
+        panel.Children.Add(Figure);
     }
     
     private string GetNameFromResources()

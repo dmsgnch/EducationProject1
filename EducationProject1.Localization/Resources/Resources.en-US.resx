@@ -135,4 +135,40 @@
   <data name="TriangleName" xml:space="preserve">
     <value>Triangle</value>
   </data>
+  <data name="SelectPlaceForSavingFile" xml:space="preserve">
+    <value>Select a location to save the file</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Select a save file</value>
+  </data>
+  <data name="SaveMenuItem" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="OpenMenuItem" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="FileMenuItem" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="StopAllFigureButtonText" xml:space="preserve">
+    <value>Stop all</value>
+  </data>
+  <data name="StartAllFigureButtonText" xml:space="preserve">
+    <value>Start all</value>
+  </data>
+  <data name="CaptionError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="CaptionWarning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="MessageAddAtLeastOneFigure" xml:space="preserve">
+    <value>To save the shapes in a file you must first add at least one of them</value>
+  </data>
+  <data name="MessageIncorrectFileSignature" xml:space="preserve">
+    <value>Incorrect file signature</value>
+  </data>
+  <data name="MessageIncorrectSaveFileVersion" xml:space="preserve">
+    <value>Incorrect save file version</value>
+  </data>
 </root>

@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EducationProject1", "Educat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EducationProject1.Localization", "EducationProject1.Localization\EducationProject1.Localization.csproj", "{43F8ECEA-BD93-4D6E-91A8-6614E274EB82}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EducationProject1.RandomToolkit", "EducationProject1.RandomToolkit\EducationProject1.RandomToolkit.csproj", "{6F5DE0FD-E560-48CB-98F8-72504B220820}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{43F8ECEA-BD93-4D6E-91A8-6614E274EB82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43F8ECEA-BD93-4D6E-91A8-6614E274EB82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43F8ECEA-BD93-4D6E-91A8-6614E274EB82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F5DE0FD-E560-48CB-98F8-72504B220820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F5DE0FD-E560-48CB-98F8-72504B220820}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F5DE0FD-E560-48CB-98F8-72504B220820}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F5DE0FD-E560-48CB-98F8-72504B220820}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

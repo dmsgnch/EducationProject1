@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EducationProject1.Localization")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fcd9d10adedc8cc8f811dacfc646f9a87c7b9b59")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be8930860161c0ca5f741d68aa7e073d85425eb9")]
 [assembly: System.Reflection.AssemblyProductAttribute("EducationProject1.Localization")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EducationProject1.Localization")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

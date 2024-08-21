@@ -1,17 +1,25 @@
+using MessagePack;
+
 namespace EducationProject1.Models.SecondaryModels;
 
-public class ObjectSize
+[MessagePackObject]
+public class FigureSize
 {
+    [Key(0)]
     public double Height { get; set; }
+    [Key(1)]
     public double Width { get; set; }
 
-    public ObjectSize(double height, double width)
+    public FigureSize()
+    { }
+
+    public FigureSize(double height, double width)
     {
         Height = height;
         Width = width;
     }
     
-    public ObjectSize((double height, double width) sizeVector)
+    public FigureSize((double height, double width) sizeVector)
     {
         (Height, Width) = sizeVector;
     }
