@@ -1,8 +1,11 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using EducationProject1.Components.Events.CollisionEvents;
+using EducationProject1.Components.Extensions.EventArgsExtensions;
 using EducationProject1.Components.Helpers;
 using EducationProject1.Models.SecondaryModels;
 
@@ -10,6 +13,8 @@ namespace EducationProject1.Models.FigureModels.Abstract;
 
 public abstract class MovingFigureBase : INotifyPropertyChanged
 {
+    public event EventHandler<NewCollisionEventArgs> NewCollision;
+    
     private string _figureName;
 
     public string FigureName
@@ -78,6 +83,20 @@ public abstract class MovingFigureBase : INotifyPropertyChanged
             RandomHelper.GetNaturalRandomNumberInDiapason(
                 1, 
                 Convert.ToUInt32(panel.ActualHeight - Size.Height)));
+    }
+    
+    protected virtual void OnNewCollision(NewCollisionEventArgs e) {
+        e.Raise(this, ref NewCollision);
+    }
+    
+    public void SimulateNewCollision(String from, String to, String subject, String point) {
+        NewCollisionEventArgs e = new NewCollisionEventArgs(from, to, subject, point);
+        OnNewCollision(e);
+    }
+    
+    public Rect GetBoundingRect()
+    {
+        return new Rect(Position.X, Position.Y, Size.Width, Size.Height);
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

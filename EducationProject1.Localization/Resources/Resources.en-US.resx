@@ -171,4 +171,10 @@
   <data name="MessageIncorrectSaveFileVersion" xml:space="preserve">
     <value>Incorrect save file version</value>
   </data>
+  <data name="CollisionMessage" xml:space="preserve">
+    <value>{0} between {1} and {2} in the point: {3}</value>
+  </data>
+  <data name="Collision" xml:space="preserve">
+    <value>Collision</value>
+  </data>
 </root>

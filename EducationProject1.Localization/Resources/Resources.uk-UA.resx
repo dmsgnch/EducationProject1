@@ -171,4 +171,10 @@
   <data name="MessageIncorrectSaveFileVersion" xml:space="preserve">
     <value>Некоректна версія файлу збереження</value>
   </data>
+  <data name="CollisionMessage" xml:space="preserve">
+    <value>{0} між {1} та {2} в точці: {3}</value>
+  </data>
+  <data name="Collision" xml:space="preserve">
+    <value>Колізія</value>
+  </data>
 </root>

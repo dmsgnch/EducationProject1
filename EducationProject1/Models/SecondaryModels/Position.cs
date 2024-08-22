@@ -25,4 +25,9 @@ public class Position
     }
 
     public (double, double) GetPosition() => (X, Y);
+
+    public override string ToString()
+    {
+        return $"({X}; {Y})";
+    }
 }

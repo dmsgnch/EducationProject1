@@ -96,6 +96,24 @@ namespace EducationProject1.Localization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Колізія.
+        /// </summary>
+        public static string Collision {
+            get {
+                return ResourceManager.GetString("Collision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} між {1} та {2} в точці: {3}.
+        /// </summary>
+        public static string CollisionMessage {
+            get {
+                return ResourceManager.GetString("CollisionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Файл.
         /// </summary>
         public static string FileMenuItem {

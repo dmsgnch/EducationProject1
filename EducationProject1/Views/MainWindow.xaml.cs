@@ -1,6 +1,9 @@
 ﻿using System.Globalization;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Shapes;
+using EducationProject1.Components.Events.CollisionEvents;
+using EducationProject1.Components.Helpers;
 using EducationProject1.Components.Saves.FileSavers;
 using EducationProject1.Components.Saves.FileSavers.Abstract;
 using EducationProject1.Models.FigureModels;
@@ -47,12 +50,14 @@ public partial class MainWindow : Window
 
     private void AddRenderEventHandler()
     {
-        CompositionTarget.Rendering += OnTimerTick;
+        CompositionTarget.Rendering += MoveFigures;
+        CompositionTarget.Rendering += CollisionCheck;
     }
 
     private void DeleteRenderEventHandler()
     {
-        CompositionTarget.Rendering -= OnTimerTick;
+        CompositionTarget.Rendering -= MoveFigures;
+        CompositionTarget.Rendering -= CollisionCheck;
     }
 
     private void SetLanguages()
@@ -61,7 +66,7 @@ public partial class MainWindow : Window
         MainWindowViewModel.SelectedLanguage = MainWindowViewModel.Languages[0];
     }
 
-    private void OnTimerTick(object? sender, EventArgs e)
+    private void MoveFigures(object? sender, EventArgs e)
     {
         foreach (var figure in MainWindowViewModel.Figures)
         {
@@ -69,12 +74,70 @@ public partial class MainWindow : Window
         }
     }
 
+
+    private List<FigurePair> PreviousCollisions { get; set; } = new();
+
+    private void CollisionCheck(object? sender, EventArgs e)
+    {
+        var collisions = GetCollisions();
+
+        var previousCollisions = PreviousCollisions;
+        PreviousCollisions = new();
+
+        foreach (var collision in collisions)
+        {
+            if (!previousCollisions.Contains(collision))
+            {
+                RaiseCollisionEvent(collision);
+            }
+
+            PreviousCollisions.Add(collision);
+        }
+    }
+
+    private List<FigurePair> GetCollisions()
+    {
+        List<FigurePair> figureCollisions = new();
+
+        var groupedFigures = MainWindowViewModel.Figures.GroupBy(f => f.GetType());
+
+        foreach (var group in groupedFigures)
+        {
+            var figureArray = group.ToArray();
+
+
+            for (int i = 0; i < figureArray.Length; i++)
+            {
+                for (int j = 0; j < figureArray.Length; j++)
+                {
+                    if(i.Equals(j)) continue;
+                    
+                    if (figureArray[i].GetBoundingRect().IntersectsWith(figureArray[j].GetBoundingRect()))
+                    {
+                        figureCollisions.Add(new FigurePair(figureArray[i], figureArray[j]));
+                    }
+                }
+            }
+        }
+
+        return figureCollisions;
+    }
+
+    private void RaiseCollisionEvent(FigurePair figuresPair)
+    {
+        figuresPair.First.SimulateNewCollision(
+            figuresPair.First.FigureName,
+            figuresPair.Second.FigureName,
+            Localization.Resources.Resources.Collision,
+            CollisionPointCalculateHelper.GetFiguresCollisionPoint(figuresPair.First, figuresPair.Second).ToString());
+    }
+
     #region Figures spawn
 
     private void OnTriangleButton_Click(object sender, RoutedEventArgs e) => CreateNewFigure(new Triangle());
     private void OnRectangleButton_Click(object sender, RoutedEventArgs e) => CreateNewFigure(new Rectangle());
     private void OnCircleButton_Click(object sender, RoutedEventArgs e) => CreateNewFigure(new Circle());
-    
+
     internal void CreateNewFigure(MovingFigureBase movingFigure)
     {
         movingFigure.Draw(MyCanvas);
@@ -119,7 +182,7 @@ public partial class MainWindow : Window
         SetAllFiguresIsStopped(true);
         DeleteRenderEventHandler();
     }
-    
+
     private void StartAllFiguresAndRendering()
     {
         SetAllFiguresIsStopped(false);
@@ -187,16 +250,16 @@ public partial class MainWindow : Window
         if (MainWindowViewModel.Figures.Count.Equals(0))
         {
             MessageBox.Show(
-                Localization.Resources.Resources.MessageAddAtLeastOneFigure, 
+                Localization.Resources.Resources.MessageAddAtLeastOneFigure,
                 Localization.Resources.Resources.CaptionWarning);
             return;
         }
 
         //Stop updating figures position
         DeleteRenderEventHandler();
-        
+
         await fileSaver.SaveInFile(_saveCreator.GetFigureSaves(MainWindowViewModel.Figures));
-        
+
         AddRenderEventHandler();
     }
 

@@ -96,6 +96,24 @@ namespace EducationProject1.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Collision.
+        /// </summary>
+        public static string Collision {
+            get {
+                return ResourceManager.GetString("Collision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} between {1} and {2} in the point: {3}.
+        /// </summary>
+        public static string CollisionMessage {
+            get {
+                return ResourceManager.GetString("CollisionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File.
         /// </summary>
         public static string FileMenuItem {

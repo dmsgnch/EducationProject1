@@ -90,6 +90,23 @@
                         Click="OnStopAllFiguresButton_Click">
                 </Button>
 
+                <Button DockPanel.Dock="Right"
+                        Content="+"
+                        VerticalAlignment="Center"
+                        MinHeight="25"
+                        MinWidth="40"
+                        Margin="10 5 10 5"
+                        Command="{Binding PlusEventFunctionCommand}">
+                </Button>
+                
+                <Button DockPanel.Dock="Right"
+                        Content="-"
+                        VerticalAlignment="Center"
+                        MinHeight="25"
+                        MinWidth="40"
+                        Margin="10 5 10 5"
+                        Command="{Binding MinusEventFunctionCommand}">
+                </Button>
             </DockPanel>
         </DockPanel>
 
