@@ -24,29 +24,6 @@ public class Triangle : MovingFigureBase
         FillBrush = Brushes.Red;
         FigureName = GetNameFromResources();
     }
-
-    public override void Draw(Panel panel)
-    {
-        Figure = new Polygon
-        {
-            Points = new PointCollection
-            {
-                new Point(0, Size.Height),
-                new Point(Size.Width / 2, 0),
-                new Point(Size.Width, Size.Height)
-            },
-            Fill = FillBrush,
-            Stroke = Brushes.Black,
-            StrokeThickness = 0
-        };
-
-        Position ??= GetRandomPanelPosition(panel);
-        
-        Canvas.SetLeft(Figure, Position.X);
-        Canvas.SetTop(Figure, Position.Y);
-        
-        panel.Children.Add(Figure);
-    }
     
     private string GetNameFromResources()
     {
@@ -56,5 +33,24 @@ public class Triangle : MovingFigureBase
     public override void SetResourceName()
     {
         FigureName = GetNameFromResources();
+    }
+    
+    protected override void OnRender(DrawingContext dc)
+    {
+        base.OnRender(dc);
+
+        Point p1 = new Point(Position.X, Position.Y + Size.Height);
+        Point p2 = new Point(Position.X + Size.Width / 2, Position.Y);
+        Point p3 = new Point(Position.X + Size.Width, Position.Y + Size.Height);
+        
+        StreamGeometry geometry = new StreamGeometry();
+        using (StreamGeometryContext context = geometry.Open())
+        {
+            context.BeginFigure(p1, true, true);
+            context.LineTo(p2, true, true);
+            context.LineTo(p3, true, true);
+        }
+        
+        dc.DrawGeometry(FillBrush, BorderPen, geometry);
     }
 }

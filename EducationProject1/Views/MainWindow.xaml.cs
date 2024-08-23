@@ -162,9 +162,9 @@ public partial class MainWindow : Window
 
     internal void CreateNewFigure(MovingFigureBase movingFigure)
     {
-        movingFigure.Draw(MyCanvas);
-
-        ((MainWindowViewModel)DataContext).Figures.Add(movingFigure);
+        MainWindowViewModel.Figures.Add(movingFigure);
+        movingFigure.SetPosition(MyCanvas);
+        MyCanvas.Children.Add(movingFigure);
     }
 
     #endregion

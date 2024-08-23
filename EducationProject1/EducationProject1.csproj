@@ -41,4 +41,8 @@
       <Resource Include="Resources\Sounds\beep.wav" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="bin\Debug\net8.0-windows\myApp.log" />
+    </ItemGroup>
+
 </Project>

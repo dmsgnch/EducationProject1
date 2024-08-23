@@ -1,6 +1,5 @@
-using System.Windows.Controls;
+using System.Windows;
 using System.Windows.Media;
-using System.Windows.Shapes;
 using EducationProject1.Models.FigureModels.Abstract;
 using EducationProject1.Models.SecondaryModels;
 
@@ -25,25 +24,6 @@ public class Circle : MovingFigureBase
         FigureName = GetNameFromResources();
     }
 
-    public override void Draw(Panel panel)
-    {
-        Figure = new Ellipse
-        {
-            Width = Size.Width,
-            Height = Size.Height,
-            Fill = FillBrush,
-            Stroke = Brushes.Black,
-            StrokeThickness = 0
-        };
-
-        Position ??= GetRandomPanelPosition(panel);
-        
-        Canvas.SetLeft(Figure, Position.X);
-        Canvas.SetTop(Figure, Position.Y);
-        
-        panel.Children.Add(Figure);
-    }
-
     private string GetNameFromResources()
     {
         return Localization.Resources.Resources.CircleName;
@@ -52,5 +32,15 @@ public class Circle : MovingFigureBase
     public override void SetResourceName()
     {
         FigureName = GetNameFromResources();
+    }
+    
+    protected override void OnRender(DrawingContext dc)
+    {
+        base.OnRender(dc);
+
+        var radius = Size.Width / 2;
+        
+        dc.DrawEllipse(FillBrush, BorderPen, 
+            new Point(Position.X + radius, Position.Y + radius), radius, radius);
     }
 }

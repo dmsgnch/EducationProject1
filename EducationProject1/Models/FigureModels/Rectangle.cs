@@ -1,4 +1,4 @@
-using System.Windows.Controls;
+using System.Windows;
 using System.Windows.Media;
 using EducationProject1.Models.FigureModels.Abstract;
 using EducationProject1.Models.SecondaryModels;
@@ -23,25 +23,6 @@ public class Rectangle : MovingFigureBase
         FigureName = GetNameFromResources();
     }
     
-    public override void Draw(Panel panel)
-    {
-        Figure = new System.Windows.Shapes.Rectangle()
-        {
-            Width = Size.Width,
-            Height = Size.Height,
-            Fill = FillBrush,
-            Stroke = Brushes.Black,
-            StrokeThickness = 0
-        };
-        
-        Position ??= GetRandomPanelPosition(panel);
-        
-        Canvas.SetLeft(Figure, Position.X);
-        Canvas.SetTop(Figure, Position.Y);
-        
-        panel.Children.Add(Figure);
-    }
-    
     private string GetNameFromResources()
     {
         return Localization.Resources.Resources.RectangleName;
@@ -50,5 +31,14 @@ public class Rectangle : MovingFigureBase
     public override void SetResourceName()
     {
         FigureName = GetNameFromResources();
+    }
+    
+    protected override void OnRender(DrawingContext dc)
+    {
+        base.OnRender(dc);
+        
+        Rect rect = new Rect(Position.X, Position.Y, Size.Width, Size.Height);
+        
+        dc.DrawRectangle(FillBrush, BorderPen, rect);
     }
 }

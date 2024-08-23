@@ -12,9 +12,10 @@ using EducationProject1.Models.SecondaryModels;
 
 namespace EducationProject1.Models.FigureModels.Abstract;
 
-public abstract class MovingFigureBase : INotifyPropertyChanged
+public abstract class MovingFigureBase : FrameworkElement, INotifyPropertyChanged
 {
     public event EventHandler<NewCollisionEventArgs> NewCollision;
+    public object SyncObject = new();
 
     private string _figureName;
 
@@ -28,11 +29,11 @@ public abstract class MovingFigureBase : INotifyPropertyChanged
         }
     }
 
-    public Position Position { get; set; }
+    public Position Position { get; set; } = new();
     public SpeedVector SpeedVector { get; set; }
     public FigureSize Size { get; set; }
-    protected SolidColorBrush? FillBrush { get; set; }
-    public Shape? Figure { get; set; }
+    public Brush FillBrush { get; set; }
+    public Pen BorderPen { get; set; }
 
     public MovingFigureBase()
     {
@@ -58,25 +59,30 @@ public abstract class MovingFigureBase : INotifyPropertyChanged
 
     public virtual void Move(Canvas myCanvas)
     {
-        if (Figure is null) return;
+        lock (SyncObject)
+        {
+            Position.X += SpeedVector.dX;
+            Position.Y += SpeedVector.dY;
+        }
 
-        Position.X += SpeedVector.dX;
-        Position.Y += SpeedVector.dY;
-
-        if (Position.X <= 0 || Position.X >= myCanvas.ActualWidth - Size.Width)
+        if (Position.X < 0 || Position.X >= myCanvas.ActualWidth - Size.Width)
         {
             CheckOutOfPanel(Position.X, SpeedVector.dX, myCanvas.ActualWidth - Size.Width);
             SpeedVector.dX = -SpeedVector.dX;
         }
 
-        if (Position.Y <= 0 || Position.Y >= myCanvas.ActualHeight - Size.Height)
+        if (Position.Y < 0 || Position.Y >= myCanvas.ActualHeight - Size.Height)
         {
             CheckOutOfPanel(Position.Y, SpeedVector.dY, myCanvas.ActualHeight - Size.Height);
             SpeedVector.dY = -SpeedVector.dY;
         }
 
-        Canvas.SetLeft(Figure, Position.X);
-        Canvas.SetTop(Figure, Position.Y);
+        InvalidateVisual();
+    }
+
+    public virtual void SetPosition(Panel panel, Position? position = null)
+    {
+        Position = position is null ? GetRandomPanelPosition(panel) : position;
     }
 
     private void CheckOutOfPanel(double position, double speed, double maxPoint)
@@ -85,11 +91,10 @@ public abstract class MovingFigureBase : INotifyPropertyChanged
         {
             throw new Exception<FigureOutOfPanelException>(
                 new FigureOutOfPanelException(FigureName, Position.ToString()),
-                "The figure appeared outside the panel");
+                "The figure is outside the panel");
         }
     }
 
-    public abstract void Draw(Panel panel);
     public abstract void SetResourceName();
 
     protected Position GetRandomPanelPosition(Panel panel)
@@ -102,7 +107,7 @@ public abstract class MovingFigureBase : INotifyPropertyChanged
                 1,
                 Convert.ToUInt32(panel.ActualHeight - Size.Height)));
     }
-    
+
     #region Collision events
 
     protected virtual void OnNewCollision(NewCollisionEventArgs e)
@@ -115,9 +120,9 @@ public abstract class MovingFigureBase : INotifyPropertyChanged
         NewCollisionEventArgs e = new NewCollisionEventArgs(from, to, subject, point);
         OnNewCollision(e);
     }
-    
+
     #endregion
-    
+
     #region Figure physics
 
     public Rect GetBoundingRect()
@@ -131,22 +136,26 @@ public abstract class MovingFigureBase : INotifyPropertyChanged
 
         return position > maxPoint;
     }
-    
+
     public void ReturnFigureToThePanel(Panel panel)
     {
         if (IsFigureOutOfPanel(Position.X, SpeedVector.dX, panel.ActualWidth - Size.Width))
         {
-            Position.X = panel.ActualWidth - Size.Width;
-            Canvas.SetLeft(Figure, Position.X);
+            lock (SyncObject)
+            {
+                Position.X = panel.ActualWidth - Size.Width;
+            }
         }
-        
+
         if (IsFigureOutOfPanel(Position.Y, SpeedVector.dY, panel.ActualHeight - Size.Height))
         {
-            Position.Y = panel.ActualHeight - Size.Height;
-            Canvas.SetTop(Figure, Position.Y);
+            lock (SyncObject)
+            {
+                Position.Y = panel.ActualHeight - Size.Height;
+            }
         }
     }
-    
+
     #endregion
 
     public event PropertyChangedEventHandler? PropertyChanged;

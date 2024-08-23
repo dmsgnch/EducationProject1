@@ -6,7 +6,6 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using EducationProject1.Commands;
 using EducationProject1.Components.Events.CollisionEvents;
-using EducationProject1.Components.Sounds;
 using EducationProject1.Localization.Resources;
 using EducationProject1.Models.FigureModels.Abstract;
 using EducationProject1.Models.SecondaryModels;
@@ -61,11 +60,11 @@ public class MainWindowViewModel : INotifyPropertyChanged
         get => _selectedFigure;
         set
         {
-            if (_selectedFigure?.Figure is not null) RemoveHighlightFigure(_selectedFigure.Figure);
+            if (_selectedFigure is not null) RemoveHighlightFigure(_selectedFigure);
 
             _selectedFigure = value;
 
-            if (_selectedFigure?.Figure is not null) HighlightFigure(_selectedFigure.Figure);
+            if (_selectedFigure is not null) HighlightFigure(_selectedFigure);
 
             OnPropertyChanged();
             ToggleFigureMovementCommand.RaiseCanExecuteChanged();
@@ -203,14 +202,14 @@ public class MainWindowViewModel : INotifyPropertyChanged
 
     #region Figure highlighting
 
-    private void HighlightFigure(Shape shape)
+    private void HighlightFigure(MovingFigureBase figure)
     {
-        shape.StrokeThickness = 2;
+        figure.BorderPen = new Pen(Brushes.Black, 2);
     }
 
-    private void RemoveHighlightFigure(Shape shape)
+    private void RemoveHighlightFigure(MovingFigureBase figure)
     {
-        shape.StrokeThickness = 0;
+        figure.BorderPen = new Pen(Brushes.Black, 0);
     }
 
     #endregion

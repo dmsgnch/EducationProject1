@@ -1,4 +1,5 @@
 using System.Windows;
+using EducationProject1.Components.Helpers;
 using EducationProject1.Views;
 
 namespace EducationProject1;
@@ -19,5 +20,6 @@ public class App : Application
         base.OnStartup(e);
         
         _mainWindow.Show(); 
+        UiHelper.Initialize(Dispatcher);
     }
 }
