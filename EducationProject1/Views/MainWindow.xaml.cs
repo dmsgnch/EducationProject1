@@ -1,9 +1,10 @@
 ﻿using System.Globalization;
 using System.Windows;
 using System.Windows.Media;
-using System.Windows.Shapes;
-using EducationProject1.Components.Events.CollisionEvents;
+using EducationProject1.Components.Exceptions;
 using EducationProject1.Components.Helpers;
+using EducationProject1.Components.Loggers;
+using EducationProject1.Components.Loggers.Abstract;
 using EducationProject1.Components.Saves.FileSavers;
 using EducationProject1.Components.Saves.FileSavers.Abstract;
 using EducationProject1.Models.FigureModels;
@@ -14,6 +15,7 @@ using EducationProject1.Services.FigureSaveListCreatorServices.Abstract;
 using EducationProject1.Services.FigureSaveListLoaderServices.Abstract;
 using EducationProject1.Services.SaveLoaderSelectorServices.Abstract;
 using EducationProject1.ViewModels;
+using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 using Rectangle = EducationProject1.Models.FigureModels.Rectangle;
 
@@ -25,17 +27,20 @@ namespace EducationProject1.Views;
 public partial class MainWindow : Window
 {
     internal readonly MainWindowViewModel MainWindowViewModel;
+    private readonly LogMachineBase _logger;
     private readonly SaveLoaderSelectorServiceBase _saveLoader;
     private readonly FigureSaveListCreatorServiceBase _saveCreator;
     private readonly FigureSaveListLoaderServiceBase _figuresSaveLoader;
 
     public MainWindow(
+        LogMachineBase logger,
         SaveLoaderSelectorServiceBase saveLoader,
         FigureSaveListCreatorServiceBase saveCreator,
         FigureSaveListLoaderServiceBase figuresSaveLoader)
     {
         InitializeComponent();
 
+        _logger = logger;
         _saveLoader = saveLoader;
         _saveCreator = saveCreator;
         _figuresSaveLoader = figuresSaveLoader;
@@ -70,10 +75,27 @@ public partial class MainWindow : Window
     {
         foreach (var figure in MainWindowViewModel.Figures)
         {
-            figure.Move(MyCanvas);
+            ExecuteFigureMoving(figure);
         }
     }
 
+    private void ExecuteFigureMoving(MovingFigureBase figure)
+    {
+        try
+        {
+            figure.Move(MyCanvas);
+        }
+        catch(Exception<FigureOutOfPanelException> ex)
+        {
+            _logger.LogToFile(LogType.WARNING, ex.Message);
+            figure.ReturnFigureToThePanel(MyCanvas);
+        }
+        catch(Exception ex)
+        {
+            _logger.LogToFile(LogType.ERROR, ex.Message);
+            throw new Exception($"Unexpected exception: {ex.Message}");
+        }
+    }
 
     private List<FigurePair> PreviousCollisions { get; set; } = new();
 

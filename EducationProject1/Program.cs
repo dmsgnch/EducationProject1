@@ -1,4 +1,6 @@
 using EducationProject1.Components.Events.CollisionEvents;
+using EducationProject1.Components.Loggers;
+using EducationProject1.Components.Loggers.Abstract;
 using EducationProject1.Services.FigureSaveListCreatorServices;
 using EducationProject1.Services.FigureSaveListCreatorServices.Abstract;
 using EducationProject1.Services.FigureSaveListLoaderServices;
@@ -25,12 +27,8 @@ public static class Program
                 services.AddTransient<SaveLoaderSelectorServiceBase, SaveLoaderSelectorService>();
                 services.AddTransient<FigureSaveListCreatorServiceBase, FigureSaveListCreatorService>();
                 services.AddTransient<FigureSaveListLoaderServiceBase, FigureSaveListLoaderService>();
-                
-                services.AddLogging(configure =>
-                {
-                    configure.AddConsole();
-                    configure.AddDebug();   
-                });
+
+                services.AddSingleton<LogMachineBase, LogMachine>();
             })
             .Build();
         var app = host.Services.GetService<App>();
